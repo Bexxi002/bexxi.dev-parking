@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Almost There... - Bexxi.dev</title>
+
+    <style>
+        :root[data-theme="dark"] {
+            --text: #dee9fc;
+            --secondary-text: #dee9fc80; /* 50% opacity */
+            --background: #0d1b2b;
+            --primary: #a6c3f2;
+            --secondary: #6d82ba;
+            --accent: #9abdf9;
+
+            --border: #2b3a4e; 
+            --border-strong: #3f5a7a;
+            --secondary-background: #14222f;
+        }
+        :root[data-theme="light"] {
+            --text: #030e21;
+            --secondary-text: #030e2180; /* 50% opacity */
+            --background: #d4e2f2;
+            --primary: #0d2a59;
+            --secondary: #455992;
+            --accent: #062965;
+
+            --border: #a4b9d6;
+            --border-strong: #728ab1;
+            --secondary-background: #c5d4e8;
+        }
+        :root {
+            --font-100: 0.625rem;   /* 10px - Tiny / captions */
+            --font-200: 0.75rem;    /* 12px - Small text */
+            --font-300: 0.875rem;   /* 14px - Body text (smaller) */
+            --font-400: 1rem;       /* 16px - Base body text */
+            --font-500: 1.25rem;    /* 20px - Subheadings / larger text */
+            --font-600: 1.5rem;     /* 24px - h3 style */
+            --font-700: 2rem;       /* 32px - h2 style */
+            --font-800: 3rem;       /* 48px - h1 style */
+        }
+        html, body {
+            margin: 0;
+            height: 100%;
+            background-color: var(--background);
+            color: var(--text);
+            font-size: var(--font-400);
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        a {
+            text-decoration: underline;
+            color: var(--text);
+        }
+        .rainbow-glo {
+            font-size: var(--font-500);
+            color: var(--text);
+            text-shadow: 
+                0 0 2px #ff005e, 
+                0 0 4px #ff005e, 
+                0 0 6px #ff005e;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            0% {
+                text-shadow: 
+                    0 0 2px #ff005e, 
+                    0 0 4px #ff005e, 
+                    0 0 6px #ff005e;
+            }
+            100% {
+                text-shadow: 
+                    0 0 3px #00d4ff, 
+                    0 0 5px #00d4ff, 
+                    0 0 7px #00d4ff;
+            }
+        }
+        .rainbow-hover {
+            position: relative;
+            color: var(--text);
+        }
+        .rainbow-hover::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            text-shadow: 
+                0 0 2px #ff005e,
+                0 0 4px #ff005e,
+                0 0 6px #ff005e;
+            animation: glow 1.5s infinite alternate;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            color: var(--text);
+        }
+        .rainbow-hover:hover::after {
+            opacity: 1;
+        }
+        @media (max-width: 750px) {
+            #content {
+                padding: 1.5rem;
+                max-width: 95%;
+            }
+            h2 {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h2>Almost There...</h2>
+        <p><span class="rainbow-glo">Bexxi</span><span>.dev</span> is still a work in progress. Hang tight, we'll be ready soon.</p>
+    </div>
+
+    <script src="/src/javascript/misc.js"></script>
+</body>
+
+<noscript>
+    <style>
+        body #content { display: none !important; }
+        a {
+            text-decoration: underline;
+        }
+        @media (max-width: 1080px) {
+            body {
+                padding: 1.5rem;
+                max-width: 95%;
+            }
+            h2 {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+    <div>
+        <h2>JavaScript is off :c</h2>
+        <p>This site requires JavaScript to work properly. Please enable it in your browser settings to view <span class="rainbow-glo">Bexxi</span><span>.dev</span>.</p>
+        <br>
+        <p><a href="https://www.enable-javascript.com/" target="_blank" rel="noopener noreferrer" class="rainbow-hover" data-text="How to enable JavaScript">How to enable JavaScript</a></p>
+    </div>
+</noscript>
+
+</html>
