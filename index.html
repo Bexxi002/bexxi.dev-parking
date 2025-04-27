@@ -1,22 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Almost There... - Bexxi.dev</title>
 
     <script>
-        (function() {
-            try {
-                const theme = localStorage.getItem('theme');
-                if (theme === 'dark' || theme === 'light') {
-                    document.documentElement.setAttribute('data-theme', theme);
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                }
-            } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'light');
-            }
+        (function () {
+            const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+            document.documentElement.setAttribute('data-theme', systemPreference);
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            });
         })();
     </script>
 
@@ -138,6 +135,8 @@
         <h2>Almost There...</h2>
         <p><span class="rainbow-glo">Bexxi</span><span>.dev</span> is still a work in progress. Hang tight, we'll be ready soon.</p>
     </div>
+
+    <script src="/src/javascript/favicon.js"></script>
 </body>
 
 <noscript>
