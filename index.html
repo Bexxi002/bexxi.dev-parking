@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Almost There... - Bexxi.dev</title>
 
+    <script>
+        (function() {
+            try {
+                const theme = localStorage.getItem('theme');
+                if (theme === 'dark' || theme === 'light') {
+                    document.documentElement.setAttribute('data-theme', theme);
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+
     <style>
         :root[data-theme="dark"] {
             --text: #dee9fc;
@@ -123,8 +138,6 @@
         <h2>Almost There...</h2>
         <p><span class="rainbow-glo">Bexxi</span><span>.dev</span> is still a work in progress. Hang tight, we'll be ready soon.</p>
     </div>
-
-    <script src="/src/javascript/misc.js"></script>
 </body>
 
 <noscript>
