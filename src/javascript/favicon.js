@@ -2,6 +2,7 @@
     function setFavicon(src, radius = 8) { // Default radius == 8px
         const favicon = document.getElementById('favicon');
         const image = new Image();
+        image.crossOrigin = 'anonymous';
         image.onload = () => {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
@@ -40,6 +41,6 @@
         document.head.appendChild(favicon);
     }
     
-    const faviconUrl = 'https://a.furaffinity.net/bexxi.gif';
+    const faviconUrl = 'https://avatars.githubusercontent.com/u/207246128';
     setFavicon(faviconUrl, 8);
 })();
