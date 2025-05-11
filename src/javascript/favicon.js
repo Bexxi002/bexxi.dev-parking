@@ -1,5 +1,5 @@
 (function() {
-    function setFavicon(src, radius = 8) { // Default radius == 8px
+    function setFavicon(src, fallbackSrc, radius = 8) {
         const favicon = document.getElementById('favicon');
         const image = new Image();
         image.crossOrigin = 'anonymous';
@@ -11,13 +11,13 @@
             canvas.height = size;
             
             ctx.beginPath();
-            ctx.arc(radius, radius, radius, Math.PI, 1.5 * Math.PI); // Top-left corner
+            ctx.arc(radius, radius, radius, Math.PI, 1.5 * Math.PI);
             ctx.lineTo(size - radius, 0);
-            ctx.arc(size - radius, radius, radius, 1.5 * Math.PI, 0); // Top-right corner
+            ctx.arc(size - radius, radius, radius, 1.5 * Math.PI, 0);
             ctx.lineTo(size, size - radius);
-            ctx.arc(size - radius, size - radius, radius, 0, 0.5 * Math.PI); // Bottom-right corner
+            ctx.arc(size - radius, size - radius, radius, 0, 0.5 * Math.PI);
             ctx.lineTo(radius, size);
-            ctx.arc(radius, size - radius, radius, 0.5 * Math.PI, Math.PI); // Bottom-left corner
+            ctx.arc(radius, size - radius, radius, 0.5 * Math.PI, Math.PI);
             ctx.lineTo(0, radius);
             ctx.closePath();
             ctx.clip();
@@ -27,11 +27,16 @@
             favicon.href = canvas.toDataURL('image/png');
         };
         image.onerror = () => {
-            const fallbackUrl = 'https://avatars.githubusercontent.com/u/207246128';
-            setFavicon(fallbackUrl, radius);
+            if (src !== fallbackSrc) {
+                console.log('Primary favicon failed to load, trying fallback...');
+                setFavicon(fallbackSrc, fallbackSrc, radius);
+            } else {
+                console.log('Both primary and fallback favicons failed to load');
+            }
         };
         image.src = src;
     }
+
     let favicon = document.getElementById('favicon');
     if (!favicon) {
         favicon = document.createElement('link');
@@ -40,7 +45,9 @@
         favicon.type = 'image/png';
         document.head.appendChild(favicon);
     }
+
+    const discordAvatarUrl = 'https://cdn.discordapp.com/avatars/1058244018770817095/5b1290324bfc841be5663f4e0c97ec33?size=1024';
+    const githubAvatarUrl = 'https://avatars.githubusercontent.com/u/207246128';
     
-    const faviconUrl = 'https://avatars.githubusercontent.com/u/207246128';
-    setFavicon(faviconUrl, 8);
+    setFavicon(discordAvatarUrl, githubAvatarUrl, 8);
 })();
